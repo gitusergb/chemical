@@ -76,7 +76,7 @@ const chemicalData = [
   const submitButton = document.getElementById('submitNewRow');
   const cancelButton = document.getElementById('cancelModal');
   let selectedRowIndex = null;
-
+  let selectedRow =null;
   // load
   function loadTable(data) {
     tableBody.innerHTML = '';
@@ -96,6 +96,7 @@ const chemicalData = [
         previouslySelected.classList.remove('selected');
       }
       tr.classList.add('selected');
+      selectedRow=row;
       selectedRowIndex = index; 
     });
       tableBody.appendChild(tr);
@@ -161,14 +162,62 @@ window.onclick = function(event) {
     clearModalFields();
   }
 };
-    
+    // Move row down 
+document.getElementById("move_row_down").addEventListener("click",()=>{
+  if (selectedRowIndex === null) {
+    alert("Select a row first");
+    return;
+  }
+
+  if (selectedRowIndex<chemicalData.length - 1) {
+    [chemicalData[selectedRowIndex], chemicalData[selectedRowIndex+ 1]] = [chemicalData[selectedRowIndex+ 1], chemicalData[selectedRowIndex]];
+    selectedRowIndex++;
+    loadTable(chemicalData);
+    selectedRow = document.querySelector(`tr[data-index="${selectedRowIndex}"]`);
+    selectedRow.classList.add('selected');
+  } else {
+    alert("Cannot move down");
+  }
+});
+
+// Move row up 
+document.getElementById("move_row_up").addEventListener("click",()=>{
+  if (selectedRowIndex === null) {
+    alert("Select a row");
+    return;
+  }
+
+  if (selectedRowIndex>0) {
+    [chemicalData[selectedRowIndex],chemicalData[selectedRowIndex-1]] = [chemicalData[selectedRowIndex-1], chemicalData[selectedRowIndex]];
+    selectedRowIndex--;
+    loadTable(chemicalData);
+    selectedRow = document.querySelector(`tr[data-index="${selectedRowIndex}"]`);
+    selectedRow.classList.add('selected');
+  } else {
+    alert("Cannot move up");
+  }
+});
   //Delete
 document.getElementById('delete_row').addEventListener('click',()=>{
   if (selectedRowIndex !== null) {
     chemicalData.splice(selectedRowIndex, 1); 
     loadTable(chemicalData);
     selectedRowIndex = null; 
+    selectedRow = null;
   } else {
     alert('Please select a row to delete.');
   }
+});
+
+
+// Refresh
+document.getElementById('refresh_data').addEventListener('click',()=>{
+  loadTable(chemicalData);
+  alert('Refreshed');
+});
+
+// Save data functionality 
+document.getElementById("save_data").addEventListener("click",()=>{
+  console.log("Chemical Data saved...", chemicalData);
+  alert("Data saved !");
 });
