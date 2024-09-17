@@ -1,0 +1,102 @@
+body{
+    font-family:Midan Regular;
+    display: flex;
+    justify-content: center;
+}
+.main{
+    width: 80%;
+ 
+}
+/* nav and buttons */
+nav{
+    margin: 20px;
+    /* color: black; */
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    font-weight: 500;
+font-size: 25px;
+
+}
+
+.btn{
+margin-right: 10px;
+padding: 5px 10px;
+border: none;
+cursor: pointer;
+border-radius: 50%;
+color: #2742a6;
+background-color: snow;
+font-weight: bolder;
+}
+
+
+.btn:hover{
+    background-color: #2742a6;
+    color: white;
+}
+/* nav and buttons */
+
+/* table */
+table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  th,td{
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-weight: 300;
+  }
+  th{
+
+    background-color: #f2f2f2;
+  }
+  
+  th:hover{
+    background-color: #ddd;
+  }
+  td input{
+    width: 100%;
+    padding: 5px;
+  }
+
+/* table */
+
+/* Modal */
+.modal{
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width:80%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-content{
+  background-color: white;
+  display:flex;
+  padding: 10px;
+  border-radius: 5px;
+  width: 80%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  justify-content:space-between;
+  align-items:center;
+}
+input{
+  margin-bottom: 10px;
+  width: 80%;
+  padding: 5px;
+}
+button{
+  margin: 5px;
+}
+/* Modal */
+tr.selected {
+  background-color: #397443;
+}
