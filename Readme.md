@@ -22,7 +22,7 @@ The **CHEMICAL SUPPLIES System** is a simple yet powerful web application that a
 
 You can check out the live demo of the project on **Netlify** by visiting the following link:
 
-[CHEMICAL SUPPLIES Live Demo](https://preeminent-mandazi-b8fd8d.netlify.app/)
+[CHEMICAL SUPPLIES Live Demo](https://extraordinary-cactus-ddc690.netlify.app/)
 
 ---
 
