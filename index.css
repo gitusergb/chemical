@@ -100,3 +100,33 @@ button{
 tr.selected {
   background-color: #397443;
 }
+
+
+/* Search section on top */
+#searchChemical{
+  height: 40PX;
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+align-items: baseline;
+}
+
+/* Search input */
+#searchQuery {
+  width: 50%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#searchChemical button {
+  padding: 8px 16px;
+  margin-left: 10px;
+  background-color: #47433f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}

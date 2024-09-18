@@ -84,6 +84,7 @@ const chemicalData = [
 
       let tr = document.createElement('tr');
       tr.setAttribute('data-index', index);
+      tr.className='chem'
       for (let key in row) {
         let td = document.createElement('td');
         td.innerText = row[key];
@@ -105,7 +106,7 @@ const chemicalData = [
   
   loadTable(chemicalData);
 
-  // Sorting 
+  // Sorting  Chemicals
   document.querySelectorAll('th').forEach((header) => {
     header.addEventListener('click', () => {
       const column = header.getAttribute('data-column');
@@ -113,7 +114,21 @@ const chemicalData = [
       loadTable(sortedData);
     });
   });
-  
+  // Search Chemiicals
+function srchChemical() {
+  const query = document.getElementById('searchQuery').value.toLowerCase();
+  const chemicals= document.querySelectorAll('.chem');
+
+  chemicals.forEach(chemical => {
+    const chemicalName = chemical.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+      
+    if (chemicalName.includes(query)) {
+      chemical.style.display = 'flex';  
+  } else {
+      chemical.style.display = 'none'; 
+  }
+  });
+}
   // Add Row 
   document.getElementById('add_row').addEventListener('click',()=>{
     modal.style.display = 'flex';
@@ -213,6 +228,7 @@ document.getElementById('delete_row').addEventListener('click',()=>{
 // Refresh
 document.getElementById('refresh_data').addEventListener('click',()=>{
   loadTable(chemicalData);
+  window.location.reload();
   alert('Refreshed');
 });
 
@@ -220,4 +236,29 @@ document.getElementById('refresh_data').addEventListener('click',()=>{
 document.getElementById("save_data").addEventListener("click",()=>{
   console.log("Chemical Data saved...", chemicalData);
   alert("Data saved !");
+});
+
+///edit cell 
+tableBody.addEventListener('click', (event) => {
+  const clickedCell = event.target;
+  if (clickedCell.tagName === 'TD') {
+    const rowIndex = clickedCell.parentElement.getAttribute('data-index');
+    const columnKey = Object.keys(chemicalData[0])[clickedCell.cellIndex]; 
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = clickedCell.innerText;
+    clickedCell.innerHTML = '';
+    clickedCell.appendChild(input);
+    input.focus();
+    input.addEventListener('blur', () => {
+      chemicalData[rowIndex][columnKey] = input.value;
+      clickedCell.innerHTML = input.value;
+      loadTable(chemicalData);
+    });
+    input.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        input.blur();
+      }
+    });
+  }
 });
